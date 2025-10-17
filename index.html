@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Casamiento - Galería de Recuerdos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --blanco-hueso: #FDFCFA;
+            --dorado: #D4AF37;
+            --dorado-claro: #E8D9A0;
+            --rosa-palido: #F5E6E8;
+            --texto-oscuro: #5D4037;
+            --texto-medio: #8D6E63;
+            --sombra-suave: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --transicion: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: var(--blanco-hueso);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header optimizado para móvil */
+        header {
+            text-align: center;
+            padding: 25px 0 15px;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 200px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--dorado), transparent);
+        }
+
+        .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 6vw, 2.5rem);
+            font-weight: 500;
+            color: var(--texto-oscuro);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .wedding-date {
+            font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+            color: var(--texto-medio);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            color: var(--texto-medio);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .hashtag {
+            text-align: center;
+            margin: 12px 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--dorado);
+            font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+            letter-spacing: 0.5px;
+        }
+
+        /* Sección de upload optimizada para móvil */
+        .upload-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 18px;
+            margin: 25px 0;
+            box-shadow: var(--sombra-suave);
+            border: 1px solid var(--dorado-claro);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 4.5vw, 1.6rem);
+            font-weight: 500;
+            color: var(--texto-oscuro);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            color: var(--dorado);
+        }
+
+        .upload-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        @media (min-width: 768px) {
+            .upload-options {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .upload-option {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--dorado-claro);
+            border-radius: 8px;
+            padding: 20px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transicion);
+            background-color: rgba(255, 255, 255, 0.7);
+            touch-action: manipulation;
+            width: 100%;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--dorado);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .upload-area i {
+            font-size: clamp(1.8rem, 7vw, 2.5rem);
+            margin-bottom: 8px;
+            color: var(--dorado);
+        }
+
+        .upload-area p {
+            margin-bottom: 6px;
+            color: var(--texto-medio);
+            font-size: clamp(0.85rem, 3vw, 0.95rem);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-btn, .camera-btn {
+            background: var(--dorado);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 22px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transicion);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Cormorant Garamond', serif;
+            touch-action: manipulation;
+            min-height: 42px;
+            width: 100%;
+            justify-content: center;
+            max-width: 220px;
+        }
+
+        .upload-btn:hover, .camera-btn:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        .file-info {
+            font-size: 0.8rem;
+            color: var(--texto-medio);
+            text-align: center;
+            font-style: italic;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        /* Modal de cámara - RESPONSIVE */
+        .camera-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .camera-modal.active {
+            display: flex;
+        }
+
+        .camera-container {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 450px;
+            max-height: 85vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .camera-header {
+            padding: 12px 16px;
+            background: var(--dorado);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .camera-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+        }
+
+        .close-camera {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+            min-width: 32px;
+            min-height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .camera-preview {
+            width: 100%;
+            background: #000;
+            position: relative;
+            aspect-ratio: 4/3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #videoElement {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .camera-controls {
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .capture-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .capture-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid white;
+            background: var(--dorado);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            transition: var(--transicion);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 480px) {
+            .capture-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .capture-btn:hover {
+            transform: scale(1.05);
+            background: #b8941f;
+        }
+
+        .capture-btn.video {
+            background: #e74c3c;
+            width: 50px;
+            height: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .capture-btn.video {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        .capture-btn.video.recording {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+        }
+
+        .camera-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .switch-camera {
+            background: var(--dorado-claro);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.85rem;
+            min-height: 32px;
+        }
+
+        /* Modal para nombre de usuario - RESPONSIVE */
+        .name-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .name-modal.active {
+            display: flex;
+        }
+
+        .name-container {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 350px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .name-container h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--texto-oscuro);
+            margin-bottom: 12px;
+            font-size: clamp(1.2rem, 4vw, 1.4rem);
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid var(--dorado-claro);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 16px;
+            transition: var(--transicion);
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: var(--dorado);
+        }
+
+        .name-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .name-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transicion);
+            min-width: 90px;
+            min-height: 38px;
+        }
+
+        .name-btn.primary {
+            background: var(--dorado);
+            color: white;
+        }
+
+        .name-btn.secondary {
+            background: var(--dorado-claro);
+            color: var(--texto-oscuro);
+        }
+
+        .name-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Galería optimizada para móvil */
+        .gallery-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 18px;
+            box-shadow: var(--sombra-suave);
+            border: 1px solid var(--dorado-claro);
+            margin-bottom: 35px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto 16px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--dorado-claro);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.4s ease;
+            height: 45vh;
+            max-height: 350px;
+            min-height: 220px;
+        }
+
+        @media (max-width: 480px) {
+            .carousel {
+                height: 40vh;
+                min-height: 200px;
+                max-height: 300px;
+            }
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .carousel-item img, .carousel-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .file-info-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .file-info-overlay {
+                padding: 8px;
+            }
+        }
+
+        .file-author {
+            font-size: 0.85rem;
+            font-style: italic;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        @media (max-width: 480px) {
+            .file-author {
+                font-size: 0.8rem;
+            }
+        }
+
+        .delete-carousel-btn {
+            background: rgba(231, 76, 60, 0.8);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transicion);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 480px) {
+            .delete-carousel-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+            }
+        }
+
+        .delete-carousel-btn:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+
+        /* Controles táctiles mejorados */
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 8px;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--texto-oscuro);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transicion);
+            border: 1px solid var(--dorado-claro);
+            pointer-events: auto;
+            touch-action: manipulation;
+        }
+
+        @media (max-width: 480px) {
+            .carousel-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 0.8rem;
+            }
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 12px;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--dorado-claro);
+            cursor: pointer;
+            transition: var(--transicion);
+            touch-action: manipulation;
+        }
+
+        .indicator.active {
+            background: var(--dorado);
+            transform: scale(1.2);
+        }
+
+        /* Grid de miniaturas responsive */
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .file-list {
+                grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+                gap: 6px;
+            }
+        }
+
+        .file-thumbnail {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            height: 80px;
+            cursor: pointer;
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+            border: 2px solid transparent;
+            touch-action: manipulation;
+        }
+
+        @media (max-width: 480px) {
+            .file-thumbnail {
+                height: 65px;
+            }
+        }
+
+        .file-thumbnail:hover, .file-thumbnail:active {
+            transform: translateY(-3px);
+            border-color: var(--dorado);
+        }
+
+        .file-thumbnail.active {
+            border-color: var(--dorado);
+            transform: translateY(-2px);
+        }
+
+        .file-thumbnail img, .file-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .file-type {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--texto-oscuro);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 480px) {
+            .file-type {
+                font-size: 0.55rem;
+                padding: 1px 4px;
+            }
+        }
+
+        .delete-thumbnail-btn {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 0.55rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transicion);
+            opacity: 0;
+        }
+
+        @media (max-width: 480px) {
+            .delete-thumbnail-btn {
+                width: 16px;
+                height: 16px;
+                font-size: 0.5rem;
+            }
+        }
+
+        .file-thumbnail:hover .delete-thumbnail-btn {
+            opacity: 1;
+        }
+
+        .delete-thumbnail-btn:hover {
+            background: #c0392b;
+            transform: scale(1.2);
+        }
+
+        .empty-gallery {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.95rem;
+            color: var(--texto-medio);
+        }
+
+        .empty-gallery i {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: var(--dorado-claro);
+        }
+
+        .file-counter {
+            display: inline-flex;
+            align-items: center;
+            background: var(--dorado-claro);
+            color: var(--texto-oscuro);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 6px;
+            gap: 3px;
+        }
+
+        .rings-divider {
+            text-align: center;
+            margin: 12px 0;
+            color: var(--dorado);
+            font-size: 1.3rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 18px 0;
+            color: var(--texto-medio);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--dorado-claro);
+            margin-top: 18px;
+        }
+
+        /* Elementos flotantes - reducidos en móvil */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            color: var(--dorado-claro);
+            font-size: 16px;
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* Estados de carga y error */
+        .camera-loading {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .camera-error {
+            color: #e74c3c;
+            text-align: center;
+            padding: 16px;
+            background: #ffeaea;
+            border-radius: 8px;
+            margin: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Mejoras específicas para pantallas muy pequeñas */
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 8px;
+            }
+            
+            header {
+                padding: 20px 0 12px;
+            }
+            
+            .upload-section, .gallery-section {
+                padding: 12px;
+                margin: 18px 0;
+            }
+            
+            .upload-area {
+                padding: 15px 8px;
+                min-height: 110px;
+            }
+            
+            .file-list {
+                grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+            }
+            
+            .file-thumbnail {
+                height: 60px;
+            }
+            
+            .carousel-btn {
+                width: 32px;
+                height: 32px;
+            }
+
+            .name-container {
+                padding: 15px;
+            }
+        }
+
+        /* Mejoras para orientación landscape en móviles */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .carousel {
+                height: 55vh;
+                max-height: 250px;
+            }
+            
+            header {
+                padding: 12px 0 8px;
+            }
+            
+            .couple-names {
+                margin-bottom: 2px;
+            }
+
+            .camera-container {
+                max-height: 95vh;
+                max-width: 85vw;
+            }
+            
+            .camera-preview {
+                aspect-ratio: 16/9;
+            }
+
+            .upload-section {
+                margin: 15px 0;
+                padding: 12px;
+            }
+        }
+
+        /* Soporte para navegadores móviles específicos */
+        @supports (-webkit-touch-callout: none) {
+            .carousel {
+                height: 45vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <!-- Modal para nombre de usuario -->
+    <div class="name-modal" id="nameModal">
+        <div class="name-container">
+            <h3><i class="fas fa-user"></i> ¿Quién está compartiendo?</h3>
+            <input type="text" class="name-input" id="userNameInput" placeholder="Ingresa tu nombre" maxlength="30">
+            <div class="name-buttons">
+                <button class="name-btn secondary" id="cancelName">Cancelar</button>
+                <button class="name-btn primary" id="saveName">Continuar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Cámara -->
+    <div class="camera-modal" id="cameraModal">
+        <div class="camera-container">
+            <div class="camera-header">
+                <h3><i class="fas fa-camera"></i> Tomar Foto/Video</h3>
+                <button class="close-camera" id="closeCamera"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="camera-preview">
+                <div class="camera-loading" id="cameraLoading">
+                    <i class="fas fa-spinner fa-spin"></i><br>
+                    Iniciando cámara...
+                </div>
+                <video id="videoElement" autoplay playsinline muted></video>
+                <canvas id="canvasElement" style="display: none;"></canvas>
+            </div>
+            <div class="camera-controls">
+                <div class="capture-buttons">
+                    <button class="capture-btn" id="capturePhoto">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <button class="capture-btn video" id="captureVideo">
+                        <i class="fas fa-video"></i>
+                    </button>
+                </div>
+                <div class="camera-options">
+                    <button class="switch-camera" id="switchCamera">
+                        <i class="fas fa-sync-alt"></i> Cambiar Cámara
+                    </button>
+                    <div id="recordingTimer" style="display: none; color: #e74c3c; font-weight: bold; font-size: 0.9rem;">
+                        00:00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="couple-names">Ludmila y Jonatan</div>
+            <div class="wedding-date">4 de Febrero, 2026</div>
+            <p class="subtitle">Comparti tus fotos y videos de nuestro día especial</p>
+            <div class="hashtag">#SeCasanLudmi&Jony</div>
+        </header>
+
+        <section class="upload-section">
+            <h2 class="section-title">
+                <i class="fas fa-cloud-upload-alt"></i> Comparti Tus Recuerdos
+            </h2>
+            
+            <div class="upload-options">
+                <div class="upload-option">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="far fa-images"></i>
+                        <p>Subir archivos existentes</p>
+                        <button class="upload-btn" id="uploadBtn">
+                            <i class="fas fa-folder-open"></i> Seleccionar Archivos
+                        </button>
+                        <input type="file" id="fileInput" class="file-input" multiple accept="image/*, video/*">
+                    </div>
+                </div>
+                
+                <div class="upload-option">
+                    <div class="upload-area">
+                        <i class="fas fa-camera"></i>
+                        <p>Tomar foto o video ahora</p>
+                        <button class="camera-btn" id="openCamera">
+                            <i class="fas fa-camera"></i> Abrir Cámara
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="file-info">Formatos soportados: JPG, PNG, GIF, MP4, MOV, AVI</p>
+        </section>
+
+        <div class="rings-divider">
+            <i class="fas fa-ring"></i>
+            <i class="fas fa-ring"></i>
+        </div>
+
+        <section class="gallery-section">
+            <h2 class="section-title">
+                <i class="fas fa-photo-video"></i> Nuestra Galería
+                <span class="file-counter" id="fileCounter">
+                    <i class="far fa-folder-open"></i> <span id="fileCount">0</span> recuerdos
+                </span>
+            </h2>
+            
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <!-- Los elementos del carrusel se insertarán aquí dinámicamente -->
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="carousel-indicators" id="indicators">
+                <!-- Los indicadores se insertarán aquí dinámicamente -->
+            </div>
+            
+            <div class="file-list" id="fileList">
+                <!-- Las miniaturas se insertarán aquí dinámicamente -->
+            </div>
+            
+            <div class="empty-gallery" id="emptyGallery">
+                <i class="far fa-heart"></i>
+                <p>Aún no hay recuerdos en nuestra galería. ¡Sé el primero en compartir!</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>Gracias por ser parte de nuestro día especial ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        // El JavaScript se mantiene igual que en la versión anterior
+        // Solo se han realizado ajustes en el CSS para mejorar la responsividad
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const fileInput = document.getElementById('fileInput');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const uploadArea = document.getElementById('uploadArea');
+            const openCameraBtn = document.getElementById('openCamera');
+            const cameraModal = document.getElementById('cameraModal');
+            const closeCameraBtn = document.getElementById('closeCamera');
+            const videoElement = document.getElementById('videoElement');
+            const canvasElement = document.getElementById('canvasElement');
+            const capturePhotoBtn = document.getElementById('capturePhoto');
+            const captureVideoBtn = document.getElementById('captureVideo');
+            const switchCameraBtn = document.getElementById('switchCamera');
+            const recordingTimer = document.getElementById('recordingTimer');
+            const cameraLoading = document.getElementById('cameraLoading');
+            
+            const nameModal = document.getElementById('nameModal');
+            const userNameInput = document.getElementById('userNameInput');
+            const saveNameBtn = document.getElementById('saveName');
+            const cancelNameBtn = document.getElementById('cancelName');
+            
+            const carousel = document.getElementById('carousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicators = document.getElementById('indicators');
+            const fileList = document.getElementById('fileList');
+            const emptyGallery = document.getElementById('emptyGallery');
+            const fileCounter = document.getElementById('fileCounter');
+            const fileCount = document.getElementById('fileCount');
+            const floatingElements = document.getElementById('floatingElements');
+            
+            // Estado de la aplicación
+            let currentIndex = 0;
+            let files = [];
+            let startX = 0;
+            let endX = 0;
+            let stream = null;
+            let isRecording = false;
+            let mediaRecorder = null;
+            let recordedChunks = [];
+            let recordingStartTime = 0;
+            let recordingInterval = null;
+            let currentFacingMode = 'user';
+            let availableCameras = [];
+            let currentCameraIndex = 0;
+            let currentUserName = '';
+            let pendingFiles = [];
+            
+            // Crear elementos flotantes nupciales
+            createFloatingElements();
+            
+            // Event Listeners
+            uploadBtn.addEventListener('click', () => fileInput.click());
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('dragleave', handleDragLeave);
+            uploadArea.addEventListener('drop', handleDrop);
+            fileInput.addEventListener('change', handleFileSelect);
+            
+            openCameraBtn.addEventListener('click', openCamera);
+            closeCameraBtn.addEventListener('click', closeCamera);
+            capturePhotoBtn.addEventListener('click', capturePhoto);
+            captureVideoBtn.addEventListener('click', toggleVideoRecording);
+            switchCameraBtn.addEventListener('click', switchCamera);
+            
+            saveNameBtn.addEventListener('click', saveUserName);
+            cancelNameBtn.addEventListener('click', cancelUserName);
+            userNameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    saveUserName();
+                }
+            });
+            
+            prevBtn.addEventListener('click', showPrevSlide);
+            nextBtn.addEventListener('click', showNextSlide);
+            
+            // Soporte para gestos táctiles en el carrusel
+            carousel.addEventListener('touchstart', handleTouchStart, { passive: true });
+            carousel.addEventListener('touchmove', handleTouchMove, { passive: true });
+            carousel.addEventListener('touchend', handleTouchEnd);
+            
+            // Funciones de nombre de usuario
+            function showNameModal() {
+                userNameInput.value = currentUserName || '';
+                nameModal.classList.add('active');
+                userNameInput.focus();
+            }
+            
+            function hideNameModal() {
+                nameModal.classList.remove('active');
+            }
+            
+            function saveUserName() {
+                const name = userNameInput.value.trim();
+                if (name) {
+                    currentUserName = name;
+                    hideNameModal();
+                    
+                    // Procesar archivos pendientes
+                    if (pendingFiles.length > 0) {
+                        processFilesWithUser(pendingFiles);
+                        pendingFiles = [];
+                    }
+                } else {
+                    alert('Por favor, ingresa tu nombre');
+                    userNameInput.focus();
+                }
+            }
+            
+            function cancelUserName() {
+                hideNameModal();
+                pendingFiles = []; // Limpiar archivos pendientes
+                showNotification('Subida cancelada');
+            }
+            
+            function processFilesWithUser(fileList) {
+                for (let i = 0; i < fileList.length; i++) {
+                    const file = fileList[i];
+                    
+                    if (!file.type.match('image.*') && !file.type.match('video.*')) {
+                        alert('Solo se permiten archivos de imagen y video');
+                        continue;
+                    }
+                    
+                    if (file.size > 50 * 1024 * 1024) {
+                        alert('El archivo es demasiado grande. Por favor, selecciona un archivo menor a 50MB.');
+                        continue;
+                    }
+                    
+                    // Agregar metadata del usuario al archivo
+                    file.userName = currentUserName;
+                    file.uploadDate = new Date().toLocaleString();
+                    files.push(file);
+                }
+                
+                updateGallery();
+                showNotification(`¡${fileList.length} archivo(s) agregado(s) por ${currentUserName}!`);
+            }
+            
+            // Funciones de cámara
+            async function openCamera() {
+                if (!currentUserName) {
+                    showNameModal();
+                    return;
+                }
+                
+                try {
+                    cameraModal.classList.add('active');
+                    cameraLoading.style.display = 'block';
+                    videoElement.style.display = 'none';
+                    
+                    await detectCameras();
+                    
+                    const constraints = {
+                        video: { 
+                            deviceId: availableCameras[currentCameraIndex] ? 
+                                { exact: availableCameras[currentCameraIndex].deviceId } : 
+                                undefined,
+                            width: { ideal: 1280 },
+                            height: { ideal: 720 }
+                        },
+                        audio: true
+                    };
+                    
+                    stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    videoElement.srcObject = stream;
+                    
+                    cameraLoading.style.display = 'none';
+                    videoElement.style.display = 'block';
+                    
+                    const options = { mimeType: 'video/webm; codecs=vp9,opus' };
+                    if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                        options.mimeType = 'video/webm; codecs=vp8,opus';
+                    }
+                    if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                        options.mimeType = 'video/webm';
+                    }
+                    if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                        options.mimeType = 'video/mp4';
+                    }
+                    
+                    try {
+                        mediaRecorder = new MediaRecorder(stream, options);
+                    } catch (e) {
+                        console.error('Error creating MediaRecorder:', e);
+                        mediaRecorder = new MediaRecorder(stream);
+                    }
+                    
+                    mediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            recordedChunks.push(event.data);
+                        }
+                    };
+                    
+                    mediaRecorder.onstop = saveRecordedVideo;
+                    
+                } catch (error) {
+                    console.error('Error al acceder a la cámara:', error);
+                    cameraLoading.innerHTML = `
+                        <div class="camera-error">
+                            <i class="fas fa-exclamation-triangle"></i><br>
+                            No se pudo acceder a la cámara.<br>
+                            <small>Asegúrate de haber concedido los permisos necesarios.</small>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Resto de funciones de cámara (sin cambios)
+            async function detectCameras() {
+                try {
+                    const devices = await navigator.mediaDevices.enumerateDevices();
+                    availableCameras = devices.filter(device => device.kind === 'videoinput');
+                } catch (error) {
+                    console.error('Error al detectar cámaras:', error);
+                }
+            }
+            
+            function closeCamera() {
+                cameraModal.classList.remove('active');
+                
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    stream = null;
+                }
+                
+                if (isRecording) {
+                    stopRecording();
+                }
+                
+                isRecording = false;
+                captureVideoBtn.classList.remove('recording');
+                recordingTimer.style.display = 'none';
+                clearInterval(recordingInterval);
+                
+                cameraLoading.style.display = 'block';
+                cameraLoading.innerHTML = '<i class="fas fa-spinner fa-spin"></i><br>Iniciando cámara...';
+                videoElement.style.display = 'none';
+            }
+            
+            function capturePhoto() {
+                if (!stream) return;
+                
+                const context = canvasElement.getContext('2d');
+                canvasElement.width = videoElement.videoWidth;
+                canvasElement.height = videoElement.videoHeight;
+                context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+                
+                canvasElement.toBlob((blob) => {
+                    const file = new File([blob], `foto-boda-${Date.now()}.png`, {
+                        type: 'image/png'
+                    });
+                    
+                    // Agregar metadata del usuario
+                    file.userName = currentUserName;
+                    file.uploadDate = new Date().toLocaleString();
+                    files.push(file);
+                    updateGallery();
+                    
+                    showNotification(`¡Foto guardada por ${currentUserName}!`);
+                }, 'image/png');
+            }
+            
+            function toggleVideoRecording() {
+                if (!stream) return;
+                
+                if (!isRecording) {
+                    startRecording();
+                } else {
+                    stopRecording();
+                }
+            }
+            
+            function startRecording() {
+                if (mediaRecorder && mediaRecorder.state === 'inactive') {
+                    recordedChunks = [];
+                    mediaRecorder.start(1000);
+                    isRecording = true;
+                    captureVideoBtn.classList.add('recording');
+                    
+                    recordingStartTime = Date.now();
+                    recordingTimer.style.display = 'block';
+                    updateRecordingTimer();
+                    recordingInterval = setInterval(updateRecordingTimer, 1000);
+                }
+            }
+            
+            function stopRecording() {
+                if (mediaRecorder && mediaRecorder.state === 'recording') {
+                    mediaRecorder.stop();
+                    isRecording = false;
+                    captureVideoBtn.classList.remove('recording');
+                    
+                    recordingTimer.style.display = 'none';
+                    clearInterval(recordingInterval);
+                }
+            }
+            
+            function saveRecordedVideo() {
+                const blob = new Blob(recordedChunks, { 
+                    type: recordedChunks[0]?.type || 'video/webm' 
+                });
+                const file = new File([blob], `video-boda-${Date.now()}.webm`, {
+                    type: blob.type
+                });
+                
+                // Agregar metadata del usuario
+                file.userName = currentUserName;
+                file.uploadDate = new Date().toLocaleString();
+                files.push(file);
+                updateGallery();
+                
+                showNotification(`¡Video guardado por ${currentUserName}!`);
+            }
+            
+            function updateRecordingTimer() {
+                const elapsed = Math.floor((Date.now() - recordingStartTime) / 1000);
+                const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+                const seconds = (elapsed % 60).toString().padStart(2, '0');
+                recordingTimer.textContent = `${minutes}:${seconds}`;
+            }
+            
+            async function switchCamera() {
+                if (availableCameras.length <= 1) {
+                    showNotification('Solo hay una cámara disponible');
+                    return;
+                }
+                
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+                
+                currentCameraIndex = (currentCameraIndex + 1) % availableCameras.length;
+                
+                try {
+                    cameraLoading.style.display = 'block';
+                    videoElement.style.display = 'none';
+                    
+                    const constraints = {
+                        video: { 
+                            deviceId: { exact: availableCameras[currentCameraIndex].deviceId },
+                            width: { ideal: 1280 },
+                            height: { ideal: 720 }
+                        },
+                        audio: true
+                    };
+                    
+                    stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    videoElement.srcObject = stream;
+                    
+                    cameraLoading.style.display = 'none';
+                    videoElement.style.display = 'block';
+                    
+                    const options = { mimeType: 'video/webm; codecs=vp9,opus' };
+                    try {
+                        mediaRecorder = new MediaRecorder(stream, options);
+                    } catch (e) {
+                        mediaRecorder = new MediaRecorder(stream);
+                    }
+                    
+                    mediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            recordedChunks.push(event.data);
+                        }
+                    };
+                    
+                    mediaRecorder.onstop = saveRecordedVideo;
+                    
+                } catch (error) {
+                    console.error('Error al cambiar de cámara:', error);
+                    showNotification('Error al cambiar de cámara');
+                    cameraLoading.style.display = 'none';
+                    videoElement.style.display = 'block';
+                }
+            }
+            
+            // Funciones de eliminación
+            function deleteFile(index) {
+                if (confirm('¿Estás seguro de que quieres eliminar este archivo?')) {
+                    files.splice(index, 1);
+                    updateGallery();
+                    showNotification('Archivo eliminado');
+                    
+                    // Ajustar el índice actual si es necesario
+                    if (currentIndex >= files.length && files.length > 0) {
+                        currentIndex = files.length - 1;
+                    }
+                    showSlide(currentIndex);
+                }
+            }
+            
+            // Funciones existentes
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.textContent = message;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: var(--dorado);
+                    color: white;
+                    padding: 10px 18px;
+                    border-radius: 22px;
+                    z-index: 1001;
+                    font-family: 'Cormorant Garamond', serif;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    text-align: center;
+                    max-width: 90%;
+                    font-size: 0.9rem;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 3000);
+            }
+            
+            function handleFileSelect(e) {
+                if (e.target.files.length) {
+                    if (!currentUserName) {
+                        pendingFiles = Array.from(e.target.files);
+                        showNameModal();
+                    } else {
+                        processFilesWithUser(Array.from(e.target.files));
+                    }
+                }
+            }
+            
+            function handleDragOver(e) {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            }
+            
+            function handleDragLeave(e) {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+            }
+            
+            function handleDrop(e) {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length) {
+                    if (!currentUserName) {
+                        pendingFiles = Array.from(e.dataTransfer.files);
+                        showNameModal();
+                    } else {
+                        processFilesWithUser(Array.from(e.dataTransfer.files));
+                    }
+                }
+            }
+            
+            function updateGallery() {
+                fileCount.textContent = files.length;
+                
+                if (files.length > 0) {
+                    emptyGallery.style.display = 'none';
+                } else {
+                    emptyGallery.style.display = 'block';
+                }
+                
+                carousel.innerHTML = '';
+                indicators.innerHTML = '';
+                fileList.innerHTML = '';
+                
+                files.forEach((file, index) => {
+                    // Crear elemento del carrusel
+                    const carouselItem = document.createElement('div');
+                    carouselItem.className = 'carousel-item';
+                    
+                    if (file.type.match('image.*')) {
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file);
+                        img.alt = `Foto de boda ${index + 1}`;
+                        img.loading = 'lazy';
+                        carouselItem.appendChild(img);
+                    } else if (file.type.match('video.*')) {
+                        const video = document.createElement('video');
+                        video.src = URL.createObjectURL(file);
+                        video.controls = true;
+                        video.preload = 'metadata';
+                        carouselItem.appendChild(video);
+                    }
+                    
+                    // Overlay con información y botón de eliminar
+                    const infoOverlay = document.createElement('div');
+                    infoOverlay.className = 'file-info-overlay';
+                    
+                    const authorInfo = document.createElement('div');
+                    authorInfo.className = 'file-author';
+                    authorInfo.innerHTML = `<i class="fas fa-user"></i> ${file.userName || 'Anónimo'}`;
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-carousel-btn';
+                    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        deleteFile(index);
+                    });
+                    
+                    infoOverlay.appendChild(authorInfo);
+                    infoOverlay.appendChild(deleteBtn);
+                    carouselItem.appendChild(infoOverlay);
+                    
+                    carousel.appendChild(carouselItem);
+                    
+                    // Crear indicador
+                    const indicator = document.createElement('div');
+                    indicator.className = 'indicator';
+                    if (index === 0) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => showSlide(index));
+                    indicators.appendChild(indicator);
+                    
+                    // Crear miniatura
+                    const thumbnail = document.createElement('div');
+                    thumbnail.className = 'file-thumbnail';
+                    if (index === 0) thumbnail.classList.add('active');
+                    thumbnail.addEventListener('click', () => showSlide(index));
+                    
+                    if (file.type.match('image.*')) {
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file);
+                        img.loading = 'lazy';
+                        thumbnail.appendChild(img);
+                        const typeBadge = document.createElement('div');
+                        typeBadge.className = 'file-type';
+                        typeBadge.innerHTML = '<i class="fas fa-camera"></i>';
+                        thumbnail.appendChild(typeBadge);
+                    } else if (file.type.match('video.*')) {
+                        const video = document.createElement('video');
+                        video.src = URL.createObjectURL(file);
+                        video.preload = 'metadata';
+                        thumbnail.appendChild(video);
+                        const typeBadge = document.createElement('div');
+                        typeBadge.className = 'file-type';
+                        typeBadge.innerHTML = '<i class="fas fa-video"></i>';
+                        thumbnail.appendChild(typeBadge);
+                    }
+                    
+                    // Botón de eliminar en miniatura
+                    const deleteThumbBtn = document.createElement('button');
+                    deleteThumbBtn.className = 'delete-thumbnail-btn';
+                    deleteThumbBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    deleteThumbBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        deleteFile(index);
+                    });
+                    thumbnail.appendChild(deleteThumbBtn);
+                    
+                    fileList.appendChild(thumbnail);
+                });
+                
+                showSlide(0);
+            }
+            
+            // Resto de funciones existentes
+            function createFloatingElements() {
+                const elements = ['💍', '💒', '💕', '🌸', '✨'];
+                const count = window.innerWidth < 768 ? 8 : 15;
+                
+                for (let i = 0; i < count; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                    element.style.left = `${Math.random() * 100}%`;
+                    element.style.animationDuration = `${15 + Math.random() * 20}s`;
+                    element.style.animationDelay = `${Math.random() * 10}s`;
+                    element.style.fontSize = window.innerWidth < 768 ? '14px' : '18px';
+                    floatingElements.appendChild(element);
+                }
+            }
+            
+            function handleTouchStart(e) {
+                startX = e.touches[0].clientX;
+            }
+            
+            function handleTouchMove(e) {
+                endX = e.touches[0].clientX;
+            }
+            
+            function handleTouchEnd() {
+                const diffX = startX - endX;
+                const minSwipeDistance = 50;
+                
+                if (Math.abs(diffX) > minSwipeDistance) {
+                    if (diffX > 0) {
+                        showNextSlide();
+                    } else {
+                        showPrevSlide();
+                    }
+                }
+            }
+            
+            function showSlide(index) {
+                if (files.length === 0) return;
+                
+                currentIndex = index;
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                document.querySelectorAll('.indicator').forEach((indicator, i) => {
+                    if (i === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+                
+                document.querySelectorAll('.file-thumbnail').forEach((thumbnail, i) => {
+                    if (i === currentIndex) {
+                        thumbnail.classList.add('active');
+                    } else {
+                        thumbnail.classList.remove('active');
+                    }
+                });
+            }
+            
+            function showPrevSlide() {
+                if (files.length === 0) return;
+                
+                currentIndex = (currentIndex - 1 + files.length) % files.length;
+                showSlide(currentIndex);
+            }
+            
+            function showNextSlide() {
+                if (files.length === 0) return;
+                
+                currentIndex = (currentIndex + 1) % files.length;
+                showSlide(currentIndex);
+            }
+            
+            // Inicializar
+            updateGallery();
+            
+            window.addEventListener('resize', function() {
+                carousel.style.height = '';
+            });
+        });
+    </script>
+</body>
+</html>
